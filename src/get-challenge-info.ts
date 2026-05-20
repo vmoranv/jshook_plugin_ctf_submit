@@ -12,23 +12,27 @@ export const getChallengeInfoTool: ExtensionToolDefinition = {
   name: 'ctf_get_challenge_info',
   description: 'Get information about a CTF challenge',
   schema: {
-    platform: {
-      type: 'string',
-      enum: ['ctfd', 'fbctf', 'custom'],
-      description: 'CTF platform type',
+    type: 'object',
+    properties: {
+      platform: {
+        type: 'string',
+        enum: ['ctfd', 'fbctf', 'custom'],
+        description: 'CTF platform type',
+      },
+      baseUrl: {
+        type: 'string',
+        description: 'Platform base URL',
+      },
+      apiKey: {
+        type: 'string',
+        description: 'API key for authentication',
+      },
+      challengeId: {
+        type: 'string',
+        description: 'Challenge ID',
+      },
     },
-    baseUrl: {
-      type: 'string',
-      description: 'Platform base URL',
-    },
-    apiKey: {
-      type: 'string',
-      description: 'API key for authentication',
-    },
-    challengeId: {
-      type: 'string',
-      description: 'Challenge ID',
-    },
+    required: ['platform', 'baseUrl', 'apiKey', 'challengeId'],
   },
   handler: async (args, _ctx) => {
     try {

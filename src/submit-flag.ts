@@ -12,27 +12,31 @@ export const submitFlagTool: ExtensionToolDefinition = {
   name: 'ctf_submit_flag',
   description: 'Submit a CTF flag to the specified platform',
   schema: {
-    platform: {
-      type: 'string',
-      enum: ['ctfd', 'fbctf', 'custom'],
-      description: 'CTF platform type',
+    type: 'object',
+    properties: {
+      platform: {
+        type: 'string',
+        enum: ['ctfd', 'fbctf', 'custom'],
+        description: 'CTF platform type',
+      },
+      baseUrl: {
+        type: 'string',
+        description: 'Platform base URL (e.g., https://ctfd.example.com)',
+      },
+      apiKey: {
+        type: 'string',
+        description: 'API key or token for authentication',
+      },
+      challengeId: {
+        type: 'string',
+        description: 'Challenge ID to submit the flag for',
+      },
+      flag: {
+        type: 'string',
+        description: 'The flag value to submit',
+      },
     },
-    baseUrl: {
-      type: 'string',
-      description: 'Platform base URL (e.g., https://ctfd.example.com)',
-    },
-    apiKey: {
-      type: 'string',
-      description: 'API key or token for authentication',
-    },
-    challengeId: {
-      type: 'string',
-      description: 'Challenge ID to submit the flag for',
-    },
-    flag: {
-      type: 'string',
-      description: 'The flag value to submit',
-    },
+    required: ['platform', 'baseUrl', 'apiKey', 'challengeId', 'flag'],
   },
   handler: async (args, _ctx) => {
     try {

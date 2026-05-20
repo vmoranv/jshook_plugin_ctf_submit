@@ -15,14 +15,14 @@ export default createExtension('jshook-plugin-ctf-submit', '0.1.0')
   .tool(
     submitFlagTool.name,
     submitFlagTool.description,
-    submitFlagTool.schema.properties as Record<string, unknown>,
+    submitFlagTool.schema.properties as Record<string, object>,
     submitFlagTool.handler,
     ['workflow'],
   )
   .tool(
     getChallengeInfoTool.name,
     getChallengeInfoTool.description,
-    getChallengeInfoTool.schema.properties as Record<string, unknown>,
+    getChallengeInfoTool.schema.properties as Record<string, object>,
     getChallengeInfoTool.handler,
     ['workflow'],
   );
